@@ -5,9 +5,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
-	"path/filepath"
-	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -40,15 +37,11 @@ func main() {
 
 	handler := corsMiddleware(r)
 
-	if port == "" {
-		port = "8080"
-	}
+	port := "8080"
 
 	// Start server
 	addr := fmt.Sprintf(":%s", port)
 	log.Printf("Server starting on %s", addr)
-	log.Printf("Data directory: %s", filepath.Join("data", "sessions"))
-	
 
 	if err := http.ListenAndServe(addr, handler); err != nil {
 		log.Fatal(err)

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -8,9 +8,9 @@ function App() {
   const [count, setCount] = useState(0)
 
   useEffect(() => {
-    const testApi = axios.get('http://localhost:8080/api/check');
+    const testApi = axios.get('http://localhost:8069/api/health');
 
-    console.log(testApi.response.data);
+    console.log(testApi);
   }, [])
 
   return (
