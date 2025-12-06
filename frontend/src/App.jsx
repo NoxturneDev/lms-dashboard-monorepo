@@ -6,11 +6,13 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [apiResp, setApiResp] = useState('');
 
   useEffect(() => {
-    const testApi = axios.get('http://localhost:8069/api/health');
+    const testApi = axios.get('https://lms-dashboard.noxturne.my.id/api/health');
 
     console.log(testApi);
+    setApiResp(testApi.data.status);
   }, [])
 
   return (
@@ -22,12 +24,16 @@ function App() {
         <a href="https://react.dev" target="_blank">
           <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
+        <a href="https://lms-dashboard.noxturne.my.id/quiz">
+          Masuk ke punya pami
+        </a>
       </div>
       <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+        {apiResp}
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
